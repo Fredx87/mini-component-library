@@ -14,27 +14,32 @@ const ProgressBar = ({ value, size }) => {
     <>
       <VisuallyHidden id={LABEL_ID}>Loading: </VisuallyHidden>
       <Component aria-valuenow={value} aria-labelledby={LABEL_ID}>
-        <Bar />
+        <BarWrapper>
+          <Bar />
+        </BarWrapper>
       </Component>
     </>
   );
 };
 
+const BarWrapper = styled.div`
+  overflow: hidden;
+  border-radius: 4px;
+  height: 100%;
+`;
+
 const Bar = styled.div`
   height: 100%;
   background-color: ${COLORS.primary};
-  border-radius: 4px;
+  border-radius: 4px 0 0 4px;
 `;
 
 const Base = styled.div.attrs({ role: "progressbar" })`
-  width: 100%;
   background-color: ${COLORS.transparentGray15};
   box-shadow: inset 0px 2px 4px ${COLORS.transparentGray35};
 
   ${Bar} {
     width: ${(p) => `${p["aria-valuenow"]}%`};
-    border-radius: ${(p) =>
-      p["aria-valuenow"] >= 99.8 ? "4px" : "4px 0 0 4px"};
   }
 `;
 
