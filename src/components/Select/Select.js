@@ -26,7 +26,7 @@ const Wrapper = styled.div`
   color: ${COLORS.gray700};
   border-radius: 8px;
   position: relative;
-  display: inline-block;
+  width: max-content;
   padding: 12px 52px 12px 16px;
 
   &:focus-within {
